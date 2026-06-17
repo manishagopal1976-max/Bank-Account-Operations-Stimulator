@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Dashboard</h2>
+    <p>Account: {{ user.account_no }}</p>
+    <p>Balance: ₹{{ user.balance }}</p>
+</div>
+
+<div class="card">
+    <h2>Deposit</h2>
+    <form action="/deposit" method="POST">
+        <input type="number" name="amount" placeholder="Amount">
+        <button>Deposit</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Withdraw</h2>
+    <form action="/withdraw" method="POST">
+        <input type="number" name="amount" placeholder="Amount">
+        <button>Withdraw</button>
+    </form>
+</div>
+
+<div class="card">
+    <h2>Transaction History</h2>
+    {% for i in user.history %}
+        <div class="history-item">{{ i }}</div>
+    {% endfor %}
+</div>
+{% endblock %}
